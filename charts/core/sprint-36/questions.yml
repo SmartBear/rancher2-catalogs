@@ -1,1 +1,47 @@
-
+labels:
+  io.cattle.role: project # options are cluster/project
+  io.rancher.app_min_version: 7.3.8
+categories:
+- Core
+- SmartBear
+questions:
+- variable: defaultImage
+  default: true
+  description: "Use default Docker image"
+  label: Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: configs.image.repository
+    default: "smartbear/swaggerhub-configs-service"
+    description: "Configs API Image Name"
+    type: string
+    label: Configs API Image Name
+  - variable: configs.image.tag
+    default: "1.2.3"
+    description: "Configs API Image Tag"
+    type: string
+    label: Image Tag
+  - variable: products.image.repository
+    default: "smartbear/swaggerhub-products-api"
+    description: "Products API Image Name"
+    type: string
+    label: MariaDB Image Name
+  - variable: mariadb.image.tag
+    default: "2.4.0"
+    description: "Products API Image Tag"
+    type: string
+    label: Products API Image Tag
+- variable: configs.url
+  default: ""
+  description: "URL for Configs Service after it starts"
+  type: string
+  label: Configs URL
+  group: "Environment Variables"
+- variable: cluster.value
+  default: ""
+  description: "What Cluster/Env are we in?"
+  type: string
+  label: Cluster Value
+  group: "Environment Variables"
