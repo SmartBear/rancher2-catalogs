@@ -1,59 +1,117 @@
-# ===== Gravity Values =====
-registry: ""
-# ==========================
-
-# ===== Kubernetes Values =====
-
-# Namespace
-swaggerhubNamespace: default
-
-# Service Type
-swaggerhubServiceType: NodePort
-
-# Storage type
-storageClassType: openebs-hostpath
-
-# Replicas
-configsReplicas: 1
-productsApiReplicas: 1
-accountsApiReplicas: 1
-# =============================
-
-# ===== General Variables =====
-# Used by all services within the cluster to grab their configs
-configsURL: http://configs.grylls.coreservices.io/v1
-ec2IP: http://169.254.169.254/latest/meta-data/local-ipv4
-# =============================
-
-# ===== Core Services Variables =====
-
-# NodePort values on the host. Range must be between 30000-32767!
-configsNodePort: 30001
-productsApiNodePort: 30002
-accountsApiNodePort: 30003
-
-# Core Services Tags
-configsTag: 1.2.3
-productsApiTag: 2.0.0
-accountsApiTag: 2.0.1
-
-# used by configs-service to connect to a mongo database
-# used by configs-service, products-api, & accounts-api for determining their CLUSTER value
-coreCluster: core-dev
-
-# used in the templates yaml file to determine names for services, tiers, and apps
-coreApp: core-services
-
-configsTier: configs-service
-configsServiceName: core-configs-service
-productsTier: products-api
-productsServiceName: core-products-api
-accountsTier: accounts-api  
-accountsServiceName: core-accounts-api
-
-# ActiveMQ Unique Identifiers for Core Services
-activeMQaccountsApiID1: grylls-core-accounts-api-1
-
-# ==============================
-
+controller:
+  affinity: {}
+  config: {}
+  containerPort:
+    http: 80
+    https: 443
+    stat: 1024
+  daemonset:
+    hostPorts:
+      http: 80
+      https: 443
+      stat: 1024
+    useHostNetwork: false
+    useHostPort: false
+  defaultTLSSecret:
+    enabled: true
+    secret: null
+  extraArgs: []
+  image:
+    pullPolicy: IfNotPresent
+    repository: haproxytech/kubernetes-ingress
+    tag: '{{ .Chart.AppVersion }}'
+  imageCredentials:
+    password: null
+    registry: null
+    username: null
+  ingressClass: null
+  initContainers: []
+  kind: Deployment
+  livenessProbe:
+    failureThreshold: 3
+    initialDelaySeconds: 0
+    path: /healthz
+    periodSeconds: 10
+    port: 1042
+    scheme: HTTP
+    successThreshold: 1
+    timeoutSeconds: 1
+  logging:
+    level: info
+    traffic: {}
+  name: controller
+  nodeSelector: {}
+  podAnnotations: {}
+  podLabels: {}
+  publishService:
+    enabled: false
+    pathOverride: ""
+  readinessProbe:
+    failureThreshold: 3
+    initialDelaySeconds: 0
+    path: /healthz
+    periodSeconds: 10
+    port: 1042
+    scheme: HTTP
+    successThreshold: 1
+    timeoutSeconds: 1
+  replicaCount: 2
+  resources:
+    requests:
+      cpu: 100m
+      memory: 64Mi
+  service:
+    annotations: {}
+    enablePorts:
+      http: true
+      https: true
+      stat: true
+    externalIPs: []
+    healthCheckNodePort: 0
+    labels: {}
+    loadBalancerIP: ""
+    loadBalancerSourceRanges: []
+    nodePorts: {}
+    ports:
+      http: 80
+      https: 443
+      stat: 1024
+    targetPorts:
+      http: http
+      https: https
+      stat: stat
+    tcpPorts: []
+    type: NodePort
+  strategy: {}
+  tolerations: []
+defaultBackend:
+  affinity: {}
+  containerPort: 8080
+  image:
+    pullPolicy: IfNotPresent
+    repository: k8s.gcr.io/defaultbackend-amd64
+    runAsUser: 65534
+    tag: 1.5
+  name: default-backend
+  nodeSelector: {}
+  podAnnotations: {}
+  podLabels: {}
+  replicaCount: 2
+  resources:
+    requests:
+      cpu: 10m
+      memory: 16Mi
+  service:
+    port: 8080
+  serviceAccount:
+    create: true
+  tolerations: []
+podSecurityPolicy:
+  annotations: {}
+  enabled: false
+rbac:
+  create: true
+serviceAccount:
+  create: true
+  name: null
 
