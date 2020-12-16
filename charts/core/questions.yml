@@ -1,9 +1,3 @@
-labels:
-  io.cattle.role: project # options are cluster/project
-  io.rancher.app_min_version: 7.3.8
-categories:
-- Core
-- SmartBear
 questions:
 - variable: defaultImage
   default: true
