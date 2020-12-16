@@ -1,41 +1,72 @@
 questions:
-- variable: defaultImage
+- variable: imageDefault
   default: true
   description: "Use default Docker image"
   label: Use Default Image
   type: boolean
+  group: "Settings"
   show_subquestion_if: false
-  group: "Container Images"
   subquestions:
-  - variable: configs.image.repository
-    default: "smartbear/swaggerhub-configs-service"
-    description: "Configs API Image Name"
+  - variable: controller.image.tag
+    default: "1.4.6"
+    description: "HAProxy Ingress Controller Tag"
     type: string
-    label: Configs API Image Name
-  - variable: configs.image.tag
-    default: "1.2.3"
-    description: "Configs API Image Tag"
-    type: string
-    label: Image Tag
-  - variable: products.image.repository
-    default: "smartbear/swaggerhub-products-api"
-    description: "Products API Image Name"
-    type: string
-    label: MariaDB Image Name
-  - variable: products.image.tag
-    default: "2.4.0"
-    description: "Products API Image Tag"
-    type: string
-    label: Products API Image Tag
-- variable: configs.url
+    label: HAProxy Ingress Controller Tag
+- variable: controller.kind
+  type: enum
+  options:
+    - "DaemonSet"
+    - "Deployment"
+  default: "Deployment"
+  description: "Deployment Type"
+  label: Deployment Type
+  group: "Settings"
+- variable: controller.service.type
+  type: enum
+  options:
+    - "LoadBalancer"
+    - "NodePort"
+  default: "NodePort"
+  description: "Service Type for HAProxy Ingress Controller"
+  label: Service Type
+  group: "Settings"
+- variable: controller.ingressClass
   default: ""
-  description: "URL for Configs Service after it starts"
+  description: "Ingress Class for targeting this controller"
+  label: Ingress Class
   type: string
-  label: Configs URL
-  group: "Environment Variables"
-- variable: cluster.value
+  group: "Settings"
+- variable: controller.defaultTLSSecret.secret
   default: ""
-  description: "What Cluster/Env are we in?"
+  description: "Default TLS certificate secret"
+  label: TLS Certificate Secret
   type: string
-  label: Cluster Value
-  group: "Environment Variables"
+  group: "Settings"
+- variable: enableEnterprise
+  default: false
+  description: "Use HAProxy Enterprise"
+  label: Enable
+  type: boolean
+  group: "HAProxy Enterprise"
+  show_subquestion_if: true
+  subquestions:
+  - variable: controller.imageCredentials.registry
+    type: string
+    default: "kubernetes-registry.haproxy.com"
+    description: "HAProxy Enterprise Registtry"
+    label: Registry
+  - variable: controller.image.repository
+    type: string
+    default: "kubernetes-registry.haproxy.com/hapee-ingress"
+    description: "HAProxy Enterprise Registry"
+    label: Repository
+  - variable: controller.imageCredentials.username
+    type: string
+    default: "MYUSERNAME"
+    description: "HAProxy Enterprise Username"
+    label: Username
+  - variable: controller.imageCredentials.password
+    type: string
+    default: "MYPASSWORD"
+    description: "HAProxy Enterprise Password"
+    label: Password 
