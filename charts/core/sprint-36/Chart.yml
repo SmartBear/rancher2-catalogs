@@ -3,7 +3,7 @@ name: Core
 version: 36.0.0
 appVersion: 36.0.0
 description: Core Services
-icon: file://../wordpress-stack-220x234.png
+icon: http://www.haproxy.org/img/HAProxyCommunityEdition_60px.png
 home: http://www.smartbear.com/
 maintainers:
 - name: SmartBear
