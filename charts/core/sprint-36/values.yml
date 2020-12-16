@@ -38,7 +38,6 @@ productsApiTag: 2.0.0
 accountsApiTag: 2.0.1
 
 # used by configs-service to connect to a mongo database
-mongoURI: mongodb+srv://sh_dev:Swagger123%23@grylls-core-dev.mdwnq.mongodb.net/configs?retryWrites=true
 # used by configs-service, products-api, & accounts-api for determining their CLUSTER value
 coreCluster: core-dev
 
@@ -53,7 +52,7 @@ accountsTier: accounts-api
 accountsServiceName: core-accounts-api
 
 # ActiveMQ Unique Identifiers for Core Services
-activeMQaccountsApiID1: dev-gravity-core-accounts-api-1
+activeMQaccountsApiID1: grylls-core-accounts-api-1
 
 # ==============================
 
