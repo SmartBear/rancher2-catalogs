@@ -1,10 +1,19 @@
-apiVersion: v2
-name: Core
-version: 36.0.0
-appVersion: 36.0.0
-description: Core Services
+apiVersion: v1
+appVersion: 1.4.6
+description: A Helm chart for Core Services
+home: https://github.com/haproxytech/helm-charts/tree/master/kubernetes-ingress
 icon: http://www.haproxy.org/img/HAProxyCommunityEdition_60px.png
-home: http://www.smartbear.com/
+keywords:
+- Core
+- SmartBear
+kubeVersion: '>=1.12.0-0'
 maintainers:
-- name: SmartBear
-  email: devops@smartbear.com
+- email: devops@smartbear.com
+  name: SmartBear DevOps
+name: core-services
+sources:
+- https://github.com/haproxytech/kubernetes-ingress
+version: 1.4.300
+annotations:
+  catalog.cattle.io/certified: not-really
+  catalog.cattle.io/release-name: core-services
