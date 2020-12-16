@@ -1,7 +1,7 @@
-apiVersion: v1
+apiVersion: v2
 name: Core
-version: 9.0.3
-appVersion: 5.3.2
+version: 36.0.0
+appVersion: 36.0.0
 description: Core Services
 icon: file://../wordpress-stack-220x234.png
 keywords:
