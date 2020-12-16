@@ -28,7 +28,7 @@ questions:
     description: "Products API Image Name"
     type: string
     label: MariaDB Image Name
-  - variable: mariadb.image.tag
+  - variable: products.image.tag
     default: "2.4.0"
     description: "Products API Image Tag"
     type: string
