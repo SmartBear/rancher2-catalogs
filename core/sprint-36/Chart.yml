@@ -4,14 +4,7 @@ version: 36.0.0
 appVersion: 36.0.0
 description: Core Services
 icon: file://../wordpress-stack-220x234.png
-keywords:
-- smartbear
-- web
-- application
 home: http://www.smartbear.com/
-sources:
-- https://github.com/smartbear
 maintainers:
 - name: SmartBear
   email: devops@smartbear.com
-engine: gotpl
